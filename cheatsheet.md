@@ -7,9 +7,13 @@ $ eval "$(ssh-agent -s)"
 $ ssh-add ~/.ssh/id_rsa
 ```
 
+## Convert plist files to xml
+`plutil -convert xml1 -o blah.xml blah.plist`
+
 ## Github
 * [Cheatsheet](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf)
 * [Github Markdown reference](https://help.github.com/articles/markdown-basics/)
+* [More github markdown](https://guides.github.com/features/mastering-markdown/)
 * [Git-scm](https://git-scm.com/)
 
 ## Latex installation
@@ -30,3 +34,4 @@ $ ssh-add ~/.ssh/id_rsa
 ## ML, etc
 * [Michael Nielsen book](http://neuralnetworksanddeeplearning.com/)
 * [Deep learning book](https://goodfeli.github.io/dlbook/)
+
