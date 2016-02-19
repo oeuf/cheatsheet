@@ -35,3 +35,19 @@ $ ssh-add ~/.ssh/id_rsa
 * [Michael Nielsen book](http://neuralnetworksanddeeplearning.com/)
 * [Deep learning book](https://goodfeli.github.io/dlbook/)
 
+## Start postgres on localhost
+```
+$ postgres -D /usr/local/var/postgres > logfile 2>&1
+```
+
+## Setting up PostgreSQL
+Install via homebrew
+`$ brew install postgresql`
+Make a postgres directory 
+`$ sudo mkdir -p /usr/local/var/postgres`
+Change permissions for current user
+`$ sudo chown ${USER}:admin /usr/local/var/postgres/`
+Start the server
+`pg_ctl -D /usr/local/var/postgres/data -l /usr/local/var/postgres/data/server.log start`
+(optional) Make postgres launch on startup
+`cp /usr/local/Cellar/postgresql/<VERSION NUMBER>/homebrew.mxcl.postgresql.plist ~/Library/LaunchAgents/`
