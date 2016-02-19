@@ -51,3 +51,9 @@ Start the server
 `pg_ctl -D /usr/local/var/postgres/data -l /usr/local/var/postgres/data/server.log start`
 (optional) Make postgres launch on startup
 `cp /usr/local/Cellar/postgresql/<VERSION NUMBER>/homebrew.mxcl.postgresql.plist ~/Library/LaunchAgents/`
+
+## Fixing obnoxious vim/zsh errors (_e.g._ `_arguments:451: _vim_files: function definition file not found`)
+Remove all .zcompdump files
+`rm -f ~/.zcompdump`
+Restart shell
+`exec zsh`
