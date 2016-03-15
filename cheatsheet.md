@@ -10,6 +10,11 @@ $ ssh-add ~/.ssh/id_rsa
 ## Convert plist files to xml
 `plutil -convert xml1 -o blah.xml blah.plist`
 
+
+## Find all files of particular types within current directory and gzip then
+e.g, for all json and csv files:
+`find . -type f -iname '*.json' -o -iname '*.csv' -exec gzip "{}" \;`
+
 ## Github
 * [Cheatsheet](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf)
 * [Github Markdown reference](https://help.github.com/articles/markdown-basics/)
