@@ -70,13 +70,12 @@ WITH RECURSIVE transitive_closure AS
 	FROM edges AS e
 	JOIN transitive_closure AS tc ON e.a = tc.b
 	WHERE tc.path NOT LIKE '%' || e.b || '.%'
-	AND tc.degree < 3
 )
 
 SELECT a, b, degree, path
 FROM transitive_closure
 WHERE 
-	degree = 2
+	degree = 2 --change or remove altogether for other degrees
 	AND a || b NOT IN (SELECT a || b FROM edges)
 ORDER BY a, b, degree;
 ```
