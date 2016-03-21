@@ -52,8 +52,31 @@ $ postgres -D /usr/local/var/postgres > logfile 2>&1
 * Start the server `pg_ctl -D /usr/local/var/postgres/data -l /usr/local/var/postgres/data/server.log start`
 * (optional) Make postgres launch on startup `cp /usr/local/Cellar/postgresql/<VERSION NUMBER>/homebrew.mxcl.postgresql.plist ~/Library/LaunchAgents/`
 
-## Fixing obnoxious vim/zsh errors (e.g. `_arguments:451: _vim_files: function definition file not found`)
+## Fixing obnoxious vim/zsh errors (e.g._ _arguments:451: _vim_files: function definition file not found_)
 * Remove all .zcompdump files
 `rm -f ~/.zcompdump`
 * Restart shell
 `exec zsh`
+
+
+## Get n-degree connectedness in postgres
+```
+WITH RECURSIVE transitive_closure AS
+  (SELECT a, b, 1 AS degree, a || '.' || b || '.' AS path
+	FROM edges
+
+	UNION ALL
+	SELECT tc.a, e.b, tc.degree + 1, tc.path || e.b || '.' AS path
+	FROM edges AS e
+	JOIN transitive_closure AS tc ON e.a = tc.b
+	WHERE tc.path NOT LIKE '%' || e.b || '.%'
+	AND tc.degree < 3
+)
+
+SELECT a, b, degree, path
+FROM transitive_closure
+WHERE 
+	degree = 2
+	AND a || b NOT IN (SELECT a || b FROM edges)
+ORDER BY a, b, degree;
+```
